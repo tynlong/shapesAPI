@@ -1,0 +1,30 @@
+from shapeCRUD.models import Triangle
+from shapeCRUD.serializers import TriangleSerializer
+from rest_framework.renderers import JSONRenderer
+from rest_framework.parsers import JSONParser
+triangle= Triangle{angle_1:60,angle_2:60,angle_3:60,length_1:1,length_2:1,length_3:1}
+triangle.save()
+
+triangle= Triangle(angle_1=90,angle_2=45,angle_3=45,length_1=1,length_2=1,length_3=1.41421)
+triangle.save()
+
+serializer = TriangleSerializer(triangle)
+serializer.data
+
+content = JSONRenderer().render(serializer.data)
+content
+
+serializer = TriangleSerializer(data=data)
+serializer.is_valid()
+# True
+serializer.validated_data
+# OrderedDict([('title', ''), ('code', 'print("hello, world")\n'), ('linenos', False), ('language', 'python'), ('style', 'friendly')])
+serializer.save()
+
+
+serializer = TriangleSerializer(Triangle.objects.all(), many=True)
+serializer.data
+
+{"angle_1":60,"angle_2":60,"angle_3":60,"length_1":1,"length_2":1,"length_3":1}
+
+{"data":{"length_1":3,"length_2":4}}
